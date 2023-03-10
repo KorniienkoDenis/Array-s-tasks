@@ -1,20 +1,86 @@
-// Array's task 4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <ctime>
+
+/*
+	
+	Task 4.
+		Find the minimum of the modulo element in the array.
+
+*/
+
+void InitializeArray(int arr[], const int size);
+void ShowArray(int arr[], const int size);
+void ShowArrayWithElementsModulo(int arr[], const int size);
+int FindMinimumModulElement(int arr[], const int size);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	srand(time(nullptr));
+
+	const int size = 20;
+	int arr[size];
+
+	InitializeArray(arr, size);
+	ShowArray(arr, size);
+
+	std::cout << "---------------------------------------------------------------------------\n";
+
+	ShowArrayWithElementsModulo(arr, size);
+
+	std::cout << "Minimum element modulo is: " << FindMinimumModulElement(arr, size);
+
+	std::cout << std::endl;
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void InitializeArray(int arr[], const int size)
+{
+	for (int index = 0; index < size; index++)
+		arr[index] = -15 + rand() % 31;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	std::cout << std::endl;
+}
+
+void ShowArray(int arr[], const int size)
+{
+	std::cout << "Array: ";
+
+	for (int index = 0; index < size; index++)
+		std::cout << arr[index] << " ";
+
+	std::cout << std::endl;
+}
+
+void ShowArrayWithElementsModulo(int arr[], const int size)
+{
+	std::cout << "Array with elements modulo: ";
+
+	for (int index = 0; index < size; index++)
+	{
+		if (arr[index] < 0)
+		{
+			arr[index] = arr[index] + -2 * arr[index];
+		}
+		std::cout << arr[index] << " ";
+	}
+
+	std::cout << std::endl;
+}
+
+int FindMinimumModulElement(int arr[], const int size)
+{
+	int minimumElement = arr[0];
+
+	for (int index = 0; index < size; index++)
+	{
+		if (minimumElement > arr[index])
+		{
+			minimumElement = arr[index];
+		}
+	}
+
+	std::cout << std::endl;
+
+	return minimumElement;
+}
