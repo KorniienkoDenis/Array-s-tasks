@@ -1,20 +1,95 @@
-// Array's task 6.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <ctime>
+
+/*
+	
+	Task 6.
+		Find the sum of the minimum and the maximum elements in the array.
+
+*/
+
+void InitializeArray(int arr[], const int size);
+void ShowArray(int arr[], const int size);
+
+int FindMinimumElement(int arr[], const int size);
+int FindMaximumElement(int arr[], const int size);
+int FindSumMinAndMax(const int minimum ,const int maximum);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	srand(time(nullptr));
+	
+	const int size = 20;
+	int arr[size];
+
+	InitializeArray(arr, size);
+	ShowArray(arr, size);
+
+	int minimum = FindMinimumElement(arr, size);
+	int maximum = FindMaximumElement(arr, size);
+
+	std::cout << std::endl;
+
+	std::cout << "Minimum: " << minimum << std::endl;
+	std::cout << "Maximum: " << maximum << std::endl;
+
+	std::cout << std::endl;
+
+	int sum = FindSumMinAndMax(minimum, maximum);
+
+	std::cout << "The sum of the minimum and maximum elements int he array: " << sum;
+
+	std::cout << std::endl;
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void InitializeArray(int arr[], const int size)
+{
+	for (int index = 0; index < size; index++)
+		arr[index] = rand() % 20 + 1;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void ShowArray(int arr[], const int size)
+{
+	std::cout << "Array: ";
+
+	for (int index = 0; index < size; index++)
+		std::cout << arr[index] << " ";
+
+	std::cout << std::endl;
+}
+
+int FindMinimumElement(int arr[], const int size)
+{
+	int minimum = arr[0];
+
+	for (int index = 0; index < size; index++)
+	{
+		if (minimum > arr[index])
+		{
+			minimum = arr[index];
+		}
+	}
+
+	return minimum;
+}
+int FindMaximumElement(int arr[], const int size)
+{
+	int maximum = arr[0];
+
+	for (int index = 0; index < size; index++)
+	{
+		if (maximum < arr[index])
+		{
+			maximum = arr[index];
+		}
+	}
+
+	return maximum;
+}
+
+int FindSumMinAndMax(const int minimum, const int maximum)
+{
+	return minimum + maximum;
+}
