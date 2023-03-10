@@ -1,20 +1,63 @@
-// Array's task 5.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+/*
+	
+	Task 5.
+		Find the sum of the negative elements in the array.
+
+*/
+
+void InitializeArray(int arr[], const int size);
+void ShowArray(int arr[], const int size);
+int FindSumNegativeElements(int arr[], const int size);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	srand(time(nullptr));
+
+	const int size = 20;
+	int arr[size];
+
+	InitializeArray(arr, size);
+	ShowArray(arr, size);
+
+	std::cout << "The sum of the negative elements in the array: " << FindSumNegativeElements(arr, size);
+	std::cout << std::endl;
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void InitializeArray(int arr[], const int size)
+{
+	for (int index = 0; index < size; index++)
+		arr[index] = -20 + rand() % 40;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	std::cout << std::endl;
+}
+
+void ShowArray(int arr[], const int size)
+{
+	std::cout << "Array: ";
+
+	for (int index = 0; index < size; index++)
+		std::cout << arr[index] << " ";
+
+	std::cout << std::endl;
+}
+
+int FindSumNegativeElements(int arr[], const int size)
+{
+	int sumNegativeElements = 0;
+
+	for (int index = 0; index < size; index++)
+	{
+		if (arr[index] < 0)
+		{
+			sumNegativeElements += arr[index];
+		}
+	}
+
+	std::cout << std::endl;
+
+	return sumNegativeElements;
+}
